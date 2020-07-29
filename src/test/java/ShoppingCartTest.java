@@ -14,7 +14,6 @@ public class ShoppingCartTest {
     @Before
     public void setUp(){
        shoppingCart=new ShoppingCart();
-       shoppingCart.setCartItems(new ArrayList<>());
     }
 
     @Test

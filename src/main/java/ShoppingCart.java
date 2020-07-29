@@ -1,10 +1,11 @@
 import shoppingcart.model.CustomerType;
 import shoppingcart.model.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
-    private List<Item> cartItems;
+    private List<Item> cartItems=new ArrayList<>();
     private CustomerType customerType;
 
     public List<Item> getCartItems() {
