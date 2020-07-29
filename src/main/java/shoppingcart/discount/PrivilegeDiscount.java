@@ -1,4 +1,5 @@
-import java.math.BigDecimal;
+package shoppingcart.discount;
+
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;

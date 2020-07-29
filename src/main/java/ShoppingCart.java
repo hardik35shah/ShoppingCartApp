@@ -1,6 +1,6 @@
-import model.Item;
+import shoppingcart.model.CustomerType;
+import shoppingcart.model.Item;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class ShoppingCart {
@@ -24,8 +24,7 @@ public class ShoppingCart {
     }
 
     public double getBillingAmount(){
-        double billingAmountWithoutDiscount=cartItems.stream().mapToDouble(item->item.getPrice()).sum();
-        double billingAmount= billingAmountWithoutDiscount-customerType.getDiscount().applyDiscount(billingAmountWithoutDiscount);
-        return  billingAmount;
+        double billingAmountWithoutDiscount=cartItems.stream().mapToDouble(Item::getPrice).sum();
+        return billingAmountWithoutDiscount-customerType.getDiscount().applyDiscount(billingAmountWithoutDiscount);
     }
 }

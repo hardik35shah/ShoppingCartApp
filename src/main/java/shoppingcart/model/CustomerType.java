@@ -1,3 +1,9 @@
+package shoppingcart.model;
+
+import shoppingcart.discount.Discount;
+import shoppingcart.discount.PrivilegeDiscount;
+import shoppingcart.discount.RegularDiscount;
+
 public enum CustomerType {
     Regular(new RegularDiscount()),Privilege(new PrivilegeDiscount());
 

@@ -1,4 +1,4 @@
-package model;
+package shoppingcart.model;
 
 
 public class Item {

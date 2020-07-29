@@ -1,8 +1,8 @@
-import model.Item;
+import shoppingcart.model.CustomerType;
+import shoppingcart.model.Item;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
