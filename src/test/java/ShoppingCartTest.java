@@ -1,3 +1,5 @@
+import shoppingcart.exception.CartIsEmptyException;
+import shoppingcart.exception.ItemNotFoundInCartException;
 import shoppingcart.model.CustomerType;
 import shoppingcart.model.Item;
 import org.junit.Before;
@@ -10,19 +12,73 @@ import static org.junit.Assert.assertEquals;
 public class ShoppingCartTest {
 
     ShoppingCart shoppingCart;
+    Item item;
 
     @Before
     public void setUp(){
        shoppingCart=new ShoppingCart();
+       item=new Item("Bread",10);
     }
 
     @Test
     public void addOneItemToCart() {
-        shoppingCart.addItemToCart(new Item("Bread",10));
+        shoppingCart.addItemToCart(item);
         assertEquals(1, shoppingCart.getCartItems().size());
     }
+
     @Test
-    public void addItemForRegularCustomer(){
+    public void removeItemFromCart() {
+        shoppingCart.addItemToCart(item);
+        shoppingCart.removeItemFromCart(item);
+        assertEquals(0, shoppingCart.getCartItems().size());
+    }
+
+    @Test(expected = ItemNotFoundInCartException.class)
+    public void removeItemFromCartThrowsException() {
+        shoppingCart.removeItemFromCart(item);
+    }
+
+    @Test(expected = CartIsEmptyException.class)
+    public void checkoutWithEmptyCart(){
+        shoppingCart.getBillingAmount();
+    }
+    @Test
+    public void checkoutForPrivilegeCustomerWithDiscount10(){
+        shoppingCart.setCustomerType(CustomerType.Privilege);
+        shoppingCart.addItemToCart(new Item("WashingMachine",2000));
+
+        shoppingCart.addItemToCart(new Item("TV",2000));
+        assertEquals(3600,shoppingCart.getBillingAmount(),0.01);
+    }
+    @Test
+    public void checkoutForPrivilegeCustomerWithDiscount15(){
+        shoppingCart.setCustomerType(CustomerType.Privilege);
+        shoppingCart.addItemToCart(new Item("WashingMachine",4000));
+
+        shoppingCart.addItemToCart(new Item("TV",4000));
+        assertEquals(7000,shoppingCart.getBillingAmount(),0.01);
+    }
+
+    @Test
+    public void checkoutForPrivilegeCustomerWithDiscount20(){
+        shoppingCart.setCustomerType(CustomerType.Privilege);
+        shoppingCart.addItemToCart(new Item("WashingMachine",6000));
+
+        shoppingCart.addItemToCart(new Item("TV",6000));
+        assertEquals(10200,shoppingCart.getBillingAmount(),0.01);
+    }
+
+    @Test
+    public void checkoutForPrivilegeCustomerWithDiscount30(){
+        shoppingCart.setCustomerType(CustomerType.Privilege);
+        shoppingCart.addItemToCart(new Item("WashingMachine",10000));
+
+        shoppingCart.addItemToCart(new Item("TV",10000));
+        assertEquals(15800,shoppingCart.getBillingAmount(),0.01);
+    }
+
+    @Test
+    public void checkoutForRegularCustomerWithNoDiscount(){
         shoppingCart.setCustomerType(CustomerType.Regular);
         shoppingCart.addItemToCart(new Item("WashingMachine",3000));
 
@@ -31,18 +87,22 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void addZeroItemForRegularCustomer(){
+    public void checkoutForRegularCustomerWithDiscount10(){
         shoppingCart.setCustomerType(CustomerType.Regular);
-        assertEquals(0,shoppingCart.getBillingAmount(),0.01);
-    }
+        shoppingCart.addItemToCart(new Item("WashingMachine",8000));
 
+        shoppingCart.addItemToCart(new Item("TV",2000));
+        assertEquals(9500,shoppingCart.getBillingAmount(),0.01);
+    }
     @Test
-    public void addItemForPrivilegeCustomer(){
-        shoppingCart.setCustomerType(CustomerType.Privilege);
-        shoppingCart.addItemToCart(new Item("WashingMachine",10000));
+    public void checkoutForRegularCustomerWithDiscount20(){
+        shoppingCart.setCustomerType(CustomerType.Regular);
+        shoppingCart.addItemToCart(new Item("WashingMachine",8000));
 
-        shoppingCart.addItemToCart(new Item("WashingMachine",10000));
-        assertEquals(15800,shoppingCart.getBillingAmount(),0.01);
+        shoppingCart.addItemToCart(new Item("TV",7000));
+        assertEquals(13500,shoppingCart.getBillingAmount(),0.01);
     }
+
+
 
 }

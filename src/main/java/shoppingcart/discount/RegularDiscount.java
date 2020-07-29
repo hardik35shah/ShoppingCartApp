@@ -18,7 +18,7 @@ public class RegularDiscount implements Discount{
         if (rangeFound.getKey()==0)
             return rangeFound.getValue();
         else if (rangeFound.getKey() == 5001)
-            return billingAmountWithoutDiscount* rangeFound.getValue();
+            return (billingAmountWithoutDiscount-5000)* rangeFound.getValue();
         else
             return  (5000 * 0.10)+ (billingAmountWithoutDiscount-10000)*( rangeFound.getValue());
 
