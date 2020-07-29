@@ -41,16 +41,16 @@ public class ShoppingCartTest {
         shoppingCart.getBillingAmount();
     }
     @Test
-    public void checkoutForPrivilegeCustomerWithDiscount10(){
-        shoppingCart.setCustomerType(CustomerType.Privilege);
+    public void checkoutForPremiumCustomerWithDiscount10(){
+        shoppingCart.setCustomerType(CustomerType.Premium);
         shoppingCart.addItemToCart(new Item("WashingMachine",2000));
 
         shoppingCart.addItemToCart(new Item("TV",2000));
         assertEquals(3600,shoppingCart.getBillingAmount(),0.01);
     }
     @Test
-    public void checkoutForPrivilegeCustomerWithDiscount15(){
-        shoppingCart.setCustomerType(CustomerType.Privilege);
+    public void checkoutForPremiumCustomerWithDiscount15(){
+        shoppingCart.setCustomerType(CustomerType.Premium);
         shoppingCart.addItemToCart(new Item("WashingMachine",4000));
 
         shoppingCart.addItemToCart(new Item("TV",4000));
@@ -58,8 +58,8 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void checkoutForPrivilegeCustomerWithDiscount20(){
-        shoppingCart.setCustomerType(CustomerType.Privilege);
+    public void checkoutForPremiumCustomerWithDiscount20(){
+        shoppingCart.setCustomerType(CustomerType.Premium);
         shoppingCart.addItemToCart(new Item("WashingMachine",6000));
 
         shoppingCart.addItemToCart(new Item("TV",6000));
@@ -67,8 +67,8 @@ public class ShoppingCartTest {
     }
 
     @Test
-    public void checkoutForPrivilegeCustomerWithDiscount30(){
-        shoppingCart.setCustomerType(CustomerType.Privilege);
+    public void checkoutForPremiumCustomerWithDiscount30(){
+        shoppingCart.setCustomerType(CustomerType.Premium);
         shoppingCart.addItemToCart(new Item("WashingMachine",10000));
 
         shoppingCart.addItemToCart(new Item("TV",10000));

@@ -4,20 +4,20 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
-public class PrivilegeDiscount implements Discount {
-    private static NavigableMap<Integer,Double> privilegeDiscountRange=new TreeMap<>();
+public class PremiumDiscount implements Discount {
+    private static NavigableMap<Integer,Double> premiumDiscountRange=new TreeMap<>();
 
     static {
-        privilegeDiscountRange.put(0,0.10);
-        privilegeDiscountRange.put(4001,0.15);
-        privilegeDiscountRange.put(8001,0.20);
-        privilegeDiscountRange.put(12001,0.30);
+        premiumDiscountRange.put(0,0.10);
+        premiumDiscountRange.put(4001,0.15);
+        premiumDiscountRange.put(8001,0.20);
+        premiumDiscountRange.put(12001,0.30);
     }
 
 
 
     public double applyDiscount(double billingAmountWithoutDiscount) {
-        Map.Entry<Integer, Double> rangeFound=privilegeDiscountRange.floorEntry((int)billingAmountWithoutDiscount);
+        Map.Entry<Integer, Double> rangeFound=premiumDiscountRange.floorEntry((int)billingAmountWithoutDiscount);
         if (rangeFound.getKey()==0)
             return billingAmountWithoutDiscount* rangeFound.getValue();
         else if (rangeFound.getKey() == 4001)
