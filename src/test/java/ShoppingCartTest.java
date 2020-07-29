@@ -1,11 +1,9 @@
+import org.junit.Before;
+import org.junit.Test;
 import shoppingcart.exception.CartIsEmptyException;
 import shoppingcart.exception.ItemNotFoundInCartException;
 import shoppingcart.model.CustomerType;
 import shoppingcart.model.Item;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
